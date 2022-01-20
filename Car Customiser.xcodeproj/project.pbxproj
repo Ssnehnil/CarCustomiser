@@ -14,6 +14,10 @@
 		F662B99E2798AEDA00BDE383 /* Car_CustomiserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B99D2798AEDA00BDE383 /* Car_CustomiserTests.swift */; };
 		F662B9A82798AEDA00BDE383 /* Car_CustomiserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B9A72798AEDA00BDE383 /* Car_CustomiserUITests.swift */; };
 		F662B9AA2798AEDA00BDE383 /* Car_CustomiserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B9A92798AEDA00BDE383 /* Car_CustomiserUITestsLaunchTests.swift */; };
+		F662B9B72798BFD100BDE383 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B9B62798BFD100BDE383 /* Car.swift */; };
+		F662B9B82798BFD100BDE383 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B9B62798BFD100BDE383 /* Car.swift */; };
+		F662B9BA2798C68000BDE383 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B9B92798C68000BDE383 /* StarterCars.swift */; };
+		F662B9BB2798C68000BDE383 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662B9B92798C68000BDE383 /* StarterCars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,8 @@
 		F662B9A32798AEDA00BDE383 /* Car CustomiserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Car CustomiserUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F662B9A72798AEDA00BDE383 /* Car_CustomiserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_CustomiserUITests.swift; sourceTree = "<group>"; };
 		F662B9A92798AEDA00BDE383 /* Car_CustomiserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car_CustomiserUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F662B9B62798BFD100BDE383 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		F662B9B92798C68000BDE383 /* StarterCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterCars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				F662B9932798AED900BDE383 /* Preview Assets.xcassets */,
+				F662B9B62798BFD100BDE383 /* Car.swift */,
+				F662B9B92798C68000BDE383 /* StarterCars.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -259,6 +267,8 @@
 			files = (
 				F662B98F2798AED600BDE383 /* ContentView.swift in Sources */,
 				F662B98D2798AED600BDE383 /* Car_CustomiserApp.swift in Sources */,
+				F662B9BA2798C68000BDE383 /* StarterCars.swift in Sources */,
+				F662B9B72798BFD100BDE383 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F662B9B82798BFD100BDE383 /* Car.swift in Sources */,
 				F662B99E2798AEDA00BDE383 /* Car_CustomiserTests.swift in Sources */,
+				F662B9BB2798C68000BDE383 /* StarterCars.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
