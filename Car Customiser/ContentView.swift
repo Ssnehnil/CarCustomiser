@@ -23,8 +23,12 @@ struct ContentView: View {
             set : { newValue in
                 self.exhaustPackage = newValue
                 if newValue == true {
-                    starterCars.cars[selectedCar].topSpeed += 5
-                    remainingFunds -= 500
+                    if remainingFunds >= 500 {
+                        starterCars.cars[selectedCar].topSpeed += 5
+                        remainingFunds -= 500
+                    } else {
+                        remainingFunds = remainingFunds
+                    }
                 } else {
                     starterCars.cars[selectedCar].topSpeed -= 5
                     remainingFunds += 500
@@ -37,8 +41,12 @@ struct ContentView: View {
             set : { newValue in
                 self.tiresPackage = newValue
                 if newValue == true {
-                    starterCars.cars[selectedCar].handling += 2
-                    remainingFunds -= 750
+                    if remainingFunds >= 750 {
+                        starterCars.cars[selectedCar].handling += 2
+                        remainingFunds -= 750
+                    } else {
+                        remainingFunds = remainingFunds
+                    }
                 } else {
                     starterCars.cars[selectedCar].handling -= 2
                     remainingFunds += 750
@@ -51,8 +59,12 @@ struct ContentView: View {
             set : { newValue in
                 self.enginePackage = newValue
                 if newValue == true {
-                    starterCars.cars[selectedCar].topSpeed += 20
-                    remainingFunds -= 1000
+                    if remainingFunds >= 1000 {
+                        starterCars.cars[selectedCar].topSpeed += 20
+                        remainingFunds -= 1000
+                    } else {
+                        remainingFunds = remainingFunds
+                    }
                 } else {
                     starterCars.cars[selectedCar].topSpeed -= 20
                     remainingFunds += 1000
@@ -65,8 +77,12 @@ struct ContentView: View {
             set : { newValue in
                 self.weightPackage = newValue
                 if newValue == true {
-                    starterCars.cars[selectedCar].acceleration -= 0.5
-                    remainingFunds -= 500
+                    if remainingFunds >= 500 {
+                        starterCars.cars[selectedCar].acceleration -= 0.5
+                        remainingFunds -= 500
+                    } else {
+                        remainingFunds = remainingFunds
+                    }
                 } else {
                     starterCars.cars[selectedCar].acceleration += 0.5
                     remainingFunds += 500
