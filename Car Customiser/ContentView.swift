@@ -17,18 +17,30 @@ struct ContentView: View {
     @State private var weightPackage = false
     @State private var remainingFunds = 1000
     
+    var exhaustPackageOn: Bool {
+        return exhaustPackage ? true : remainingFunds >= 500 ? true : false
+    }
+    
+    var tiresPackageOn: Bool {
+        return tiresPackage ? true : remainingFunds >= 500 ? true : false
+    }
+    
+    var enginePackageOn: Bool {
+        return enginePackage ? true : remainingFunds >= 1000 ? true : false
+    }
+    
+    var weightPackageOn: Bool {
+        return weightPackage ? true : remainingFunds >= 500 ? true : false
+    }
+    
     var body: some View {
         let exhaustPackageBinding = Binding<Bool> (
             get : { self.exhaustPackage },
             set : { newValue in
                 self.exhaustPackage = newValue
                 if newValue == true {
-                    if remainingFunds >= 500 {
-                        starterCars.cars[selectedCar].topSpeed += 5
-                        remainingFunds -= 500
-                    } else {
-                        remainingFunds = remainingFunds
-                    }
+                    starterCars.cars[selectedCar].topSpeed += 5
+                    remainingFunds -= 500
                 } else {
                     starterCars.cars[selectedCar].topSpeed -= 5
                     remainingFunds += 500
@@ -41,15 +53,11 @@ struct ContentView: View {
             set : { newValue in
                 self.tiresPackage = newValue
                 if newValue == true {
-                    if remainingFunds >= 750 {
-                        starterCars.cars[selectedCar].handling += 2
-                        remainingFunds -= 750
-                    } else {
-                        remainingFunds = remainingFunds
-                    }
+                    starterCars.cars[selectedCar].handling += 2
+                    remainingFunds -= 500
                 } else {
                     starterCars.cars[selectedCar].handling -= 2
-                    remainingFunds += 750
+                    remainingFunds += 500
                 }
             }
         )
@@ -59,12 +67,8 @@ struct ContentView: View {
             set : { newValue in
                 self.enginePackage = newValue
                 if newValue == true {
-                    if remainingFunds >= 1000 {
-                        starterCars.cars[selectedCar].topSpeed += 20
-                        remainingFunds -= 1000
-                    } else {
-                        remainingFunds = remainingFunds
-                    }
+                    starterCars.cars[selectedCar].topSpeed += 20
+                    remainingFunds -= 1000
                 } else {
                     starterCars.cars[selectedCar].topSpeed -= 20
                     remainingFunds += 1000
@@ -77,39 +81,36 @@ struct ContentView: View {
             set : { newValue in
                 self.weightPackage = newValue
                 if newValue == true {
-                    if remainingFunds >= 500 {
-                        starterCars.cars[selectedCar].acceleration -= 0.5
-                        remainingFunds -= 500
-                    } else {
-                        remainingFunds = remainingFunds
-                    }
+                    starterCars.cars[selectedCar].acceleration -= 0.5
+                    remainingFunds -= 500
                 } else {
                     starterCars.cars[selectedCar].acceleration += 0.5
                     remainingFunds += 500
                 }
             }
         )
-        
-        Form {
-            VStack (alignment: .leading, spacing: 20){
-                Text("\(starterCars.cars[selectedCar].displayStats())")
-                Button("Next Car", action: {
-                    exhaustPackage = false
-                    tiresPackage = false
-                    enginePackage = false
-                    weightPackage = false
-                    remainingFunds = 1000
-                    selectedCar += 1
-                    if selectedCar >= starterCars.cars.count {
-                        selectedCar = 0
-                    }
-                })
-            }
-            Section {
-                Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
-                Toggle("Tires Package (Cost: 750)", isOn: tiresPackageBinding)
-                Toggle("Engine Package (Cost: 1000)", isOn: enginePackageBinding)
-                Toggle("Weight Package (Cost: 500)", isOn: weightPackageBinding)
+        VStack {
+            Form {
+                VStack (alignment: .leading, spacing: 20){
+                    Text("\(starterCars.cars[selectedCar].displayStats())")
+                    Button("Next Car", action: {
+                        exhaustPackage = false
+                        tiresPackage = false
+                        enginePackage = false
+                        weightPackage = false
+                        remainingFunds = 1000
+                        selectedCar += 1
+                        if selectedCar >= starterCars.cars.count {
+                            selectedCar = 0
+                        }
+                    })
+                }
+                Section {
+                    Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
+                    Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding)
+                    Toggle("Engine Package (Cost: 1000)", isOn: enginePackageBinding)
+                    Toggle("Weight Package (Cost: 500)", isOn: weightPackageBinding)
+                }
             }
             Text("Remaining Funds: \(remainingFunds)")
                 .foregroundColor(.red)
