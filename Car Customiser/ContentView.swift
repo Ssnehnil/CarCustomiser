@@ -106,10 +106,10 @@ struct ContentView: View {
                     })
                 }
                 Section {
-                    Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
-                    Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding)
-                    Toggle("Engine Package (Cost: 1000)", isOn: enginePackageBinding)
-                    Toggle("Weight Package (Cost: 500)", isOn: weightPackageBinding)
+                    Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding).disabled(!exhaustPackageOn)
+                    Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding).disabled(!tiresPackageOn)
+                    Toggle("Engine Package (Cost: 1000)", isOn: enginePackageBinding).disabled(!enginePackageOn)
+                    Toggle("Weight Package (Cost: 500)", isOn: weightPackageBinding).disabled(!weightPackageOn)
                 }
             }
             Text("Remaining Funds: \(remainingFunds)")
