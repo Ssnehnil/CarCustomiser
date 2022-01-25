@@ -19,19 +19,19 @@ struct ContentView: View {
     @State private var remainingTime = 30
     
     var exhaustPackageOn: Bool {
-        return exhaustPackage ? true : remainingFunds >= 500 ? true : false
+        return exhaustPackage ? true : remainingFunds >= 500 && remainingTime > 0 ? true : false
     }
     
     var tiresPackageOn: Bool {
-        return tiresPackage ? true : remainingFunds >= 750 ? true : false
+        return tiresPackage ? true : remainingFunds >= 750 && remainingTime > 0 ? true : false
     }
     
     var enginePackageOn: Bool {
-        return enginePackage ? true : remainingFunds >= 1000 ? true : false
+        return enginePackage ? true : remainingFunds >= 1000 && remainingTime > 0 ? true : false
     }
     
     var weightPackageOn: Bool {
-        return weightPackage ? true : remainingFunds >= 500 ? true : false
+        return weightPackage ? true : remainingFunds >= 500 && remainingTime > 0 ? true : false
     }
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -103,17 +103,19 @@ struct ContentView: View {
             Form {
                 VStack (alignment: .leading, spacing: 20){
                     Text("\(starterCars.cars[selectedCar].displayStats())")
-                    Button("Next Car", action: {
-                        exhaustPackage = false
-                        tiresPackage = false
-                        enginePackage = false
-                        weightPackage = false
-                        remainingFunds = 1000
-                        selectedCar += 1
-                        if selectedCar >= starterCars.cars.count {
-                            selectedCar = 0
-                        }
-                    })
+                    if remainingTime > 0 {
+                        Button("Next Car", action: {
+                            exhaustPackage = false
+                            tiresPackage = false
+                            enginePackage = false
+                            weightPackage = false
+                            remainingFunds = 1000
+                            selectedCar += 1
+                            if selectedCar >= starterCars.cars.count {
+                                selectedCar = 0
+                            }
+                        })
+                    }
                 }
                 Section {
                     Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding).disabled(!exhaustPackageOn)
