@@ -16,13 +16,14 @@ struct ContentView: View {
     @State private var enginePackage = false
     @State private var weightPackage = false
     @State private var remainingFunds = 1000
+    @State private var remainingTime = 30
     
     var exhaustPackageOn: Bool {
         return exhaustPackage ? true : remainingFunds >= 500 ? true : false
     }
     
     var tiresPackageOn: Bool {
-        return tiresPackage ? true : remainingFunds >= 500 ? true : false
+        return tiresPackage ? true : remainingFunds >= 750 ? true : false
     }
     
     var enginePackageOn: Bool {
@@ -32,6 +33,8 @@ struct ContentView: View {
     var weightPackageOn: Bool {
         return weightPackage ? true : remainingFunds >= 500 ? true : false
     }
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         let exhaustPackageBinding = Binding<Bool> (
@@ -54,10 +57,10 @@ struct ContentView: View {
                 self.tiresPackage = newValue
                 if newValue == true {
                     starterCars.cars[selectedCar].handling += 2
-                    remainingFunds -= 500
+                    remainingFunds -= 750
                 } else {
                     starterCars.cars[selectedCar].handling -= 2
-                    remainingFunds += 500
+                    remainingFunds += 750
                 }
             }
         )
@@ -90,6 +93,13 @@ struct ContentView: View {
             }
         )
         VStack {
+            Text("\(remainingTime)")
+                .onReceive(timer) { _ in
+                    if self.remainingTime > 0 {
+                        self.remainingTime -= 1
+                    }
+                }
+                .foregroundColor(.red)
             Form {
                 VStack (alignment: .leading, spacing: 20){
                     Text("\(starterCars.cars[selectedCar].displayStats())")
@@ -107,7 +117,7 @@ struct ContentView: View {
                 }
                 Section {
                     Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding).disabled(!exhaustPackageOn)
-                    Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding).disabled(!tiresPackageOn)
+                    Toggle("Tires Package (Cost: 750)", isOn: tiresPackageBinding).disabled(!tiresPackageOn)
                     Toggle("Engine Package (Cost: 1000)", isOn: enginePackageBinding).disabled(!enginePackageOn)
                     Toggle("Weight Package (Cost: 500)", isOn: weightPackageBinding).disabled(!weightPackageOn)
                 }
